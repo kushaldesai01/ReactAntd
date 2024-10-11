@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { Notification } from "../components/Notification";
 import { API_URL } from "../variables/apiURL";
 
@@ -25,7 +25,7 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     const config = response.config as CustomAxiosConfig;
     if (response.data?.message && config.showToast) {
       if (Array.isArray(response.data.message)) {
