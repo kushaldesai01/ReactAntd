@@ -1,10 +1,7 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Notification } from "../components/Notification";
 import { API_URL } from "../variables/apiURL";
-
-interface CustomAxiosConfig extends AxiosRequestConfig {
-  showToast?: boolean;
-}
+import Cookies from "js-cookie";
 
 const api = axios.create({
   baseURL: API_URL.BASE_URL,
@@ -12,7 +9,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const authToken = localStorage.getItem("token");
+    const authToken = Cookies.get("token");
     config.headers.Accept = "application/json";
     if (authToken) {
       config.headers.Authorization = `Bearer ${authToken}`;
@@ -26,8 +23,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response: AxiosResponse) => {
-    const config = response.config as CustomAxiosConfig;
-    if (response.data?.message && config.showToast) {
+    if (response.data?.message && response.config.showToast) {
       if (Array.isArray(response.data.message)) {
         response.data.message.map((msg: string) =>
           Notification.success({
@@ -55,6 +51,7 @@ api.interceptors.response.use(
         message: "Unauthorized",
       });
       localStorage.clear();
+      Cookies.remove("token");
       window.location.href = "/";
       return Promise.reject(error);
     }
@@ -76,6 +73,7 @@ api.interceptors.response.use(
       message: "Something went wrong, please try again",
     });
     localStorage.clear();
+    Cookies.remove("token");
     return Promise.reject(error);
   }
 );

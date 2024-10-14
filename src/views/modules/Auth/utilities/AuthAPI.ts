@@ -1,15 +1,11 @@
 import { API_URL } from "../../../../variables/apiURL";
 import api from "../../../../config/axios";
-import { AxiosRequestConfig } from "axios";
-
-interface CustomAxiosRequestConfig extends AxiosRequestConfig {
-  showToast?: boolean; // Add the showToast property
-}
-const config: CustomAxiosRequestConfig = { showToast: true };
+import Cookies from "js-cookie";
 
 export const signup = async (payload: any) => {
   try {
-    const response = await api.post(API_URL.AUTH.SIGNUP, payload, config);
+    const response = await api.post(API_URL.AUTH.SIGNUP, payload, { showToast: true });
+    Cookies.set("token", response?.data?.data?.token);
     return Promise.resolve(response.data);
   } catch (error: any) {
     return Promise.reject(error.response.data);
@@ -19,6 +15,7 @@ export const signup = async (payload: any) => {
 export const login = async (payload: any) => {
   try {
     const response = await api.post(API_URL.AUTH.LOGIN, payload);
+    Cookies.set("token", response?.data?.data?.token);
     return Promise.resolve(response.data);
   } catch (error: any) {
     return Promise.reject(error.response.data);

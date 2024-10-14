@@ -1,12 +1,17 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { login } from "../utilities/AuthAPI";
+import { useNavigate } from "react-router-dom";
+import { app_path } from "../../../../variables/appPath";
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
+
   const onSubmit = (values: any) => {
     login(values)
       .then((res) => {
         console.log(res);
+        navigate(app_path.dashboard.root);
       })
       .catch((error) => {
         console.log(error);

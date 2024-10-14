@@ -1,12 +1,16 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { signup } from "../utilities/AuthAPI";
+import { useNavigate } from "react-router-dom";
+import { app_path } from "../../../../variables/appPath";
 
 const SignupForm: React.FC = () => {
+  const navigate = useNavigate();
   const onSubmit = (values: any) => {
     signup(values)
       .then((res) => {
         console.log(res);
+        navigate(app_path.dashboard.root);
       })
       .catch((error) => {
         console.log(error);
