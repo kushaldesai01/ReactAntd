@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { Notification } from "../components/Notification";
 import { API_URL } from "../variables/apiURL";
 import Cookies from "js-cookie";
@@ -22,7 +22,7 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response) => {
     if (response.data?.message && response.config.showToast) {
       if (Array.isArray(response.data.message)) {
         response.data.message.map((msg: string) =>
