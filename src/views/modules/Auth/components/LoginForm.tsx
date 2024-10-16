@@ -38,7 +38,7 @@ const LoginForm: React.FC = () => {
         <Col lg={24}>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Login
+              {/* Login */}
             </Button>
           </Form.Item>
         </Col>
