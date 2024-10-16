@@ -6,5 +6,6 @@ export const app_path = {
   },
   dashboard: {
     root: "/dashboard",
+    profile: "/dashboard/profile",
   },
 };

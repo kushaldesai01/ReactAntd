@@ -3,8 +3,8 @@ import LoginForm from "../views/modules/Auth/components/LoginForm";
 import SignupForm from "../views/modules/Auth/components/SignupForm";
 import Dashboard from "../views/modules/Dashboard";
 import { app_path } from "../variables/appPath";
-import AuthLayout from "../views/layouts/Auth";
-import DashboardLayout from "../views/layouts/Dashboard";
+import AuthLayout from "../views/layouts/AuthLayout";
+import DashboardLayout from "../views/layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
