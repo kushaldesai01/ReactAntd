@@ -31,17 +31,17 @@ const AuthLayout: React.FC = () => {
       </Layout.Header> */}
       <Layout>
         <Layout.Sider
-          width="50%"
+          width="55%"
           style={{
             textAlign: "center",
-            backgroundColor: "white"
+            backgroundColor: "white",
           }}
         >
           <img
             src={logo}
             style={{
               height: "100%", // Use full height of the Sider
-              width: "100%", // Use full width of the Sider
+              width: "110%", // Use full width of the Sider
               objectFit: "cover", // Ensure the image covers the Sider without distortion
               // borderRadius: "20px",
             }}
@@ -50,15 +50,19 @@ const AuthLayout: React.FC = () => {
         </Layout.Sider>
         <Layout.Content
           style={{
-            height: "calc(100vh - 64px)", // Same height as Sider
+            height: "100vh",
             overflow: "hidden",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "white"
+            backgroundColor: "white",
+            borderRadius: "20px",
+            zIndex: 1,
           }}
         >
-          <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div
+            style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}
+          >
             <Outlet />
           </div>
         </Layout.Content>

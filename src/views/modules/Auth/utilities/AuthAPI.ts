@@ -21,3 +21,21 @@ export const login = async (payload: any) => {
     return Promise.reject(error.response.data);
   }
 };
+
+export const forgotPasswordAPI = async (payload: any) => {
+  try {
+    const response = await api.post(API_URL.AUTH.FORGOT_PASSWORD, payload, { showToast: true });
+    return Promise.resolve(response.data);
+  } catch (error: any) {
+    return Promise.reject(error.response.data);
+  }
+};
+
+export const resetPasswordAPI = async (payload: any) => {
+  try {
+    const response = await api.post(API_URL.AUTH.RESET_PASSWORD, payload, { showToast: true });
+    return Promise.resolve(response.data);
+  } catch (error: any) {
+    return Promise.reject(error.response.data);
+  }
+};
